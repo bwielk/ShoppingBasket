@@ -16,11 +16,35 @@ public class BasketTest{
     product2 = new Product(12.00);
     product3 = new Product(10.00);
   }
-
-  @Test
-  public void canAddProducts(){
+/////////////////////////////////HELPER METHODS
+  public void addTwoItems(){
     basket.add(product1);
     basket.add(product2);
+  }
+
+  public void addThreeItems(){
+    basket.add(product1);
+    basket.add(product2);
+    basket.add(product3);
+  }
+///////////////////////////////////////////////
+  @Test
+  public void canAddProducts(){
+    addTwoItems();
     assertEquals(2, basket.numOfItems());
+  }
+
+  @Test
+  public void canRemoveItems(){
+    addThreeItems();
+    basket.remove(product1);
+    assertEquals(2, basket.numOfItems());
+  }
+
+  @Test
+  public void canEmptyBasket(){
+    addTwoItems();
+    basket.empty();
+    assertEquals(0, basket.numOfItems());
   }
 }

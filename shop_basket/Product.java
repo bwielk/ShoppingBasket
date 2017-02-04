@@ -12,5 +12,4 @@ public class Product{
   public double getPrice(){
     return this.price;
   }
-
 }

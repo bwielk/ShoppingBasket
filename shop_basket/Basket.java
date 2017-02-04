@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Basket{
 
-  private List<Product> products;
+  public List<Product> products;
 
   public Basket(){
     products = new LinkedList<Product>();
@@ -15,5 +15,13 @@ public class Basket{
 
   public int numOfItems(){
     return products.size();
+  }
+
+  public void remove(Product product){
+    products.remove(product);
+  }
+
+  public void empty(){
+    products.clear();
   }
 }
