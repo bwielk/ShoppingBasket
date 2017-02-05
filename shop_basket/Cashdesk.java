@@ -18,8 +18,11 @@ public class CashDesk{
     return total - 0.1*total;
   }
 
-  public double loyaltyCardDiscount(Basket basket, Customer customer){
-    double total = basket.getTotal();
-    if(customer.hasLoyaltyCard() == true) return total*0.02;
+  public double loyaltyCardDiscount(double total, Customer customer){
+    if(customer.hasLoyaltyCard() == true){
+      total -= total*0.02;
+    }
+    return total;
   }
+  
 }

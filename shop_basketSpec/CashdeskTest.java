@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 public class CashDeskTest{
 
   CashDesk cashdesk;
-  LoyaltyCard card;
   Customer customer;
   Basket basket;
   Product product1;
@@ -15,7 +14,6 @@ public class CashDeskTest{
   @Before
   public void before(){
     cashdesk = new CashDesk();
-    card = new LoyaltyCard();
     customer = new Customer();
     basket = new Basket();
     product1 = new Product(20.00, "xxx", true);
@@ -33,7 +31,7 @@ public class CashDeskTest{
   basket.add(product3);//30
   }
 
-//NO BOGOF YET
+//NO BOGOF
   @Test
   public void canGive10perCentOffIfTotalIsMoreThan20Pounds(){
     fillBasket();
@@ -43,7 +41,16 @@ public class CashDeskTest{
   @Test
   public void canGive2PerCentDiscountUponLoyaltyCard(){
     fillBasket();
-    cashdesk.discount(basket);
-    assertEquals(123.48, cashdesk.loyaltyCardDiscount(basket, customer));
+    customer.setLoyaltyCardStatus(true);
+    assertEquals(137.20, cashdesk.loyaltyCardDiscount(basket.getTotal(), customer), 0.01);
   }
+
+  @Test 
+  public void discountsCanCumulate(){
+    fillBasket();
+    customer.setLoyaltyCardStatus(true);
+    double total1 = cashdesk.discount(basket);
+    assertEquals(123.48, cashdesk.loyaltyCardDiscount(total1, customer), 0.01);
+  }
+
 }
