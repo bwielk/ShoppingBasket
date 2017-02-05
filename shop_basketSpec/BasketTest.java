@@ -67,4 +67,11 @@ public class BasketTest{
     assertEquals(2, basket.findProductByName("xy1").size());
   }
 
+  @Test 
+  public void canGetItemsForCheckOut(){
+    addThreeItems();
+    addTwoItems();
+    assertEquals(5, basket.getItemsForCheckOut().size());
+  }
+
 }

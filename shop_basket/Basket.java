@@ -33,6 +33,14 @@ public class Basket{
     return total;
   }
 
+  public ArrayList<Product> getItemsForCheckOut(){
+    ArrayList<Product> items = new ArrayList<Product>();
+    for(Product item : products){
+      items.add(item);
+    }
+    return items;
+  }
+
   public ArrayList<Product> findProductByName(String name){
     ArrayList<Product> list = new ArrayList<Product>();
     for(Product product : products){
