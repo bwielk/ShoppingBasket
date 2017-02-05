@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Basket{
 
-  public List<Product> products;
+  private List<Product> products;
 
   public Basket(){
     products = new LinkedList<Product>();
@@ -42,4 +42,5 @@ public class Basket{
     }
     return list;
   }
+
 }

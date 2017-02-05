@@ -9,8 +9,8 @@ public class ProductTest{
 
   @Before
   public void before(){
-    product1 = new Product(10.00, "bbb");
-    product2 = new Product(8.00, "ccc");
+    product1 = new Product(10.00, "bbb", false);
+    product2 = new Product(8.00, "ccc", true);
   }
 
   @Test
@@ -25,5 +25,10 @@ public class ProductTest{
     String name2 = product2.getName();
     assertEquals("bbb", name1);
     assertEquals("ccc", name2);
+  }
+
+  @Test
+  public void canBeOn_BOGOF_Promo(){
+    assertEquals(false, product1.bogof());
   }
 }

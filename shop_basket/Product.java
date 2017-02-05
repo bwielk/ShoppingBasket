@@ -3,10 +3,11 @@ import java.util.*;
 
 public class Product{
 
-  double price;
-  String name;
+  private double price;
+  private String name;
+  private boolean bogof;
 
-  public Product(double price, String name){
+  public Product(double price, String name, boolean bogof){
     this.price = price;
     this.name = name;
   }
@@ -18,4 +19,9 @@ public class Product{
   public String getName(){
     return this.name;
   }
+
+  public boolean bogof(){
+    return this.bogof;
+  }
+
 }
