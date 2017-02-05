@@ -12,9 +12,9 @@ public class BasketTest{
   @Before
   public void before(){
     basket = new Basket();
-    product1 = new Product(23.00);
-    product2 = new Product(12.00);
-    product3 = new Product(10.00);
+    product1 = new Product(23.00, "xy1");
+    product2 = new Product(12.00, "xx1");
+    product3 = new Product(10.00, "xx2");
   }
 /////////////////////////////////HELPER METHODS
   public void addTwoItems(){
@@ -46,5 +46,24 @@ public class BasketTest{
     addTwoItems();
     basket.empty();
     assertEquals(0, basket.numOfItems());
+  }
+
+  @Test
+  public void canGetTotalPrice(){
+    addThreeItems();
+    assertEquals(45.00, basket.getTotal(), 0.1);
+  }
+
+  @Test
+  public void canGetProductByName(){
+    addThreeItems();
+    assertEquals(12.00, basket.findProductByName("xx1").get(0).getPrice(), 0.1);
+  }
+
+  @Test
+  public void canGetProductsByName(){
+    addThreeItems();
+    basket.add(product1);
+    assertEquals(2, basket.findProductByName("xy1").size());
   }
 }
