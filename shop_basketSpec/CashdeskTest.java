@@ -23,15 +23,14 @@ public class CashDeskTest{
 
   public void fillBasket(){
   basket.add(product1);//20
-  basket.add(product1);//FREE
-  basket.add(product1);//20
+  basket.add(product1);
+  basket.add(product1);
   basket.add(product2);//10
-  basket.add(product2);//FREE
+  basket.add(product2);
   basket.add(product3);//30
-  basket.add(product3);//30
+  basket.add(product3);
   }
 
-//NO BOGOF
   @Test
   public void canGive10perCentOffIfTotalIsMoreThan20Pounds(){
     fillBasket();
@@ -52,5 +51,14 @@ public class CashDeskTest{
     double total1 = cashdesk.discount(basket);
     assertEquals(123.48, cashdesk.loyaltyCardDiscount(total1, customer), 0.01);
   }
-
+  
+  @Test 
+  public void bogofWorks(){
+    basket.add(product3);//30
+    basket.add(product2);//10
+    basket.add(product2);//10(FREE)
+    basket.add(product1);//20
+    assertEquals(60.00, cashdesk.bogof(basket), 0.01);
+  }
+  
 }

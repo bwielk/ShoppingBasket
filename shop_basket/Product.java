@@ -10,6 +10,7 @@ public class Product{
   public Product(double price, String name, boolean bogof){
     this.price = price;
     this.name = name;
+    this.bogof = bogof;
   }
 
   public double getPrice(){

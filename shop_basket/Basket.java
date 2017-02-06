@@ -41,6 +41,16 @@ public class Basket{
     return items;
   }
 
+  public ArrayList<Product> getBogof(){
+    ArrayList<Product> bogofs = new ArrayList<Product>();
+    for(Product product : products){
+      if(product.bogof() == true){
+        bogofs.add(product);
+      }
+    }
+    return bogofs;
+  }
+
   public ArrayList<Product> findProductByName(String name){
     ArrayList<Product> list = new ArrayList<Product>();
     for(Product product : products){

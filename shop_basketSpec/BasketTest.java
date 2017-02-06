@@ -12,7 +12,7 @@ public class BasketTest{
   @Before
   public void before(){
     basket = new Basket();
-    product1 = new Product(23.00, "xy1", false);
+    product1 = new Product(23.00, "xy1", true);
     product2 = new Product(12.00, "xx1", false);
     product3 = new Product(10.00, "xx2", false);
   }
@@ -72,6 +72,13 @@ public class BasketTest{
     addThreeItems();
     addTwoItems();
     assertEquals(5, basket.getItemsForCheckOut().size());
+  }
+
+  @Test 
+  public void canGetBogofs(){
+    addThreeItems();
+    addTwoItems();
+    assertEquals(2, basket.getBogof().size());
   }
 
 }
