@@ -35,6 +35,22 @@ public class BasketTest{
   }
 
   @Test
+  public void updatesCounterAfterAddingProducts(){
+    addTwoItems();
+    assertEquals(2, basket.valuesCounter());
+  }
+
+  @Test
+  public void counterRegisterItemsProperly(){
+    addTwoItems();
+    addTwoItems();
+    addThreeItems();
+    assertEquals((Integer)3, basket.showUnits(product1));
+    assertEquals((Integer)3, basket.showUnits(product2));
+    assertEquals((Integer)1, basket.showUnits(product3));
+  }
+
+  @Test
   public void canRemoveItems(){
     addThreeItems();
     basket.remove(product1);
