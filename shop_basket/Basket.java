@@ -20,6 +20,10 @@ public class Basket{
     }
   }
 
+  public HashMap<Product, Integer> getCounter(){
+    return counter;
+  }
+
   public int valuesCounter(){
     return counter.size();
   }

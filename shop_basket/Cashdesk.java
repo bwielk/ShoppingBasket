@@ -27,13 +27,17 @@ public class CashDesk{
 
   public double bogof(Basket basket){
     double discount = 0;
-    ArrayList<Product> items = new ArrayList<Product>();
-    items = basket.getBogof();
-    for(int i = 0; i < items.size()/2; i += 1){
-      discount += items.get(i).getPrice();
+    HashMap<Product, Integer> counter = basket.getCounter();
+    for(Product product : counter.keySet()){
+      if(product.bogof()){
+        Integer numberOfItems = counter.get(product)/2;
+        discount += product.getPrice()*numberOfItems;
+      }
+      else{
+        break;
+      }
     }
-    double total = basket.getTotal();
-    return total - discount;
+    return basket.getTotal() - discount;
   }
 
 }
