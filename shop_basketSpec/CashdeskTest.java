@@ -34,7 +34,7 @@ public class CashDeskTest{
   @Test
   public void canGive10perCentOffIfTotalIsMoreThan20Pounds(){
     fillBasket();
-    assertEquals(126.00, cashdesk.discount(basket), 0.1);
+    assertEquals(126.00, cashdesk.discount(basket.getTotal()), 0.1);
   }
 
   @Test
@@ -48,7 +48,7 @@ public class CashDeskTest{
   public void discountsCanCumulate(){
     fillBasket();
     customer.setLoyaltyCardStatus(true);
-    double total1 = cashdesk.discount(basket);
+    double total1 = cashdesk.discount(basket.getTotal());
     assertEquals(123.48, cashdesk.loyaltyCardDiscount(total1, customer), 0.01);
   }
   
@@ -56,6 +56,39 @@ public class CashDeskTest{
   public void bogofWorks(){
     fillBasket();
     assertEquals(110.00, cashdesk.bogof(basket), 0.01);
+  }
+
+  @Test 
+  public void bogofWorks2(){
+    basket.add(product1);//20
+    basket.add(product1);//FREE
+    basket.add(product3);//30
+    basket.add(product1);//20
+    basket.add(product2);//10
+    basket.add(product1);//FREE
+    basket.add(product1);//20
+    basket.add(product2);//FREE
+    basket.add(product3);//30
+    basket.add(product2);//10
+    basket.add(product2);//FREE
+    assertEquals(140.00, cashdesk.bogof(basket), 0.01);
+  }
+
+  @Test 
+  public void transactionWorks(){
+    basket.add(product1);//20
+    basket.add(product1);//FREE
+    basket.add(product3);//30
+    basket.add(product1);//20
+    basket.add(product2);//10
+    basket.add(product1);//FREE
+    basket.add(product1);//20
+    basket.add(product2);//FREE
+    basket.add(product3);//30
+    basket.add(product2);//10
+    basket.add(product2);//FREE
+    customer.setLoyaltyCardStatus(true);
+    assertEquals(123.48, cashdesk.subtotal(basket, customer), 0.01);
   }
   
 }

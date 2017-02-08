@@ -13,9 +13,13 @@ public class CashDesk{
     return this.income;
   }
 
-  public double discount(Basket basket){
-    double total = basket.getTotal();
-    return total - 0.1*total;
+  public double discount(double total){
+    if(total > 20.00){
+      return total - 0.1*total;
+    }
+    else{
+      return total;
+    }
   }
 
   public double loyaltyCardDiscount(double total, Customer customer){
@@ -33,11 +37,14 @@ public class CashDesk{
         Integer numberOfItems = counter.get(product)/2;
         discount += product.getPrice()*numberOfItems;
       }
-      else{
-        break;
-      }
     }
     return basket.getTotal() - discount;
   }
 
+  public double subtotal(Basket basket, Customer customer){
+    double subtotal = bogof(basket);
+    subtotal = discount(subtotal);
+    subtotal =  loyaltyCardDiscount(subtotal, customer);
+    return subtotal;
+  }
 }

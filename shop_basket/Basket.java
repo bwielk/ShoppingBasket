@@ -59,7 +59,6 @@ public class Basket{
     }
     return items;
   }
-  //using the value of the keys to evaluate the amount of items
 
   public ArrayList<Product> getBogof(){
     ArrayList<Product> bogofs = new ArrayList<Product>();
